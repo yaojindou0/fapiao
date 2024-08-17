@@ -64,19 +64,19 @@
 		<div class="content">
 			<div class="grid0">
 				<span id="label">发票代码</span>
-				<span >3702231130</span>
+				<span id="fpdm">3702231130</span>
 			</div>
 			<div class="grid0">
 				<span id="label">发票号码</span>
-				<span >04571860</span>
+				<span id="fphm">04571860</span>
 			</div>
 			<div class="grid0">
 				<span id="label">合计金额</span>
-				<span >￥1098469.39(不含税)</span>
+				<span id="jine">￥1098469.39(不含税)</span>
 			</div>
 			<div class="grid0">
 				<span id="label">开票日期</span>
-				<span >2023.08.17</span>
+				<span id="riqi">2023.08.17</span>
 			</div>
 		</div>
 		<div class="foot">
@@ -84,5 +84,37 @@
 				<br/>
 				进行查验。
 		</div>
+		<script>
+			let jine=document.getElementById("jine");
+			let riqi=document.getElementById("riqi");
+			let fphm=document.getElementById("fphm");
+			let fpdm=document.getElementById("fpdm");
+			
+			if(location.search){
+				let str1=location.search.split("?")[1]
+				let map={}
+				if(str1){
+					let list=str1.split("&")
+					list.forEach(ite=>{
+						let aa=ite.split("=");
+						map[aa[0]]=aa[1]
+					})
+				}
+				
+				if(map.je){
+					jine.innerText="￥"+map.je+"(不含税)"
+				}
+				if(map.hm){
+					fphm.innerText=map.hm
+				}
+				if(map.dm){
+					fpdm.innerText=map.dm
+				}
+				if(map.rq){
+					riqi.innerText=map.rq
+				}
+			}
+			
+		</script>
 	</body>
 </html>
